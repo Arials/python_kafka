@@ -1,6 +1,6 @@
-# # Image with Python
+# Image with Python based on Debian (buster)
 
-# set base image (host OS)
+# Set base image (host OS)
 FROM python:3.9.5-buster
 # Buster is needed to be able to install librdkafka
 
@@ -15,8 +15,8 @@ RUN add-apt-repository "deb [arch=amd64] https://packages.confluent.io/deb/6.1 s
 # Install librdkafka-dev to use with python dependencies
 # -y is used to auto-answer yes to confirm the install
 RUN apt-get install -y librdkafka-dev
-# set the working directory in the container
 
+# Set the working directory in the container
 WORKDIR /code
 
 # copy the dependencies file to the working directory
@@ -26,8 +26,8 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
 
-# copy the content of the local src directory to the working directory
+# Copy the content of the local src directory to the working directory
 COPY src/ .
 
 # command to run on container start
-# CMD [ "python", "./server.py" ] 
+CMD [ "python", "./simulate_sensor.py" ] 
