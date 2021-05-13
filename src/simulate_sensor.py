@@ -11,18 +11,11 @@ value_schema_str = """
   "type": "record",
   "fields": [
     {"name": "id", "type": "string"},
-    {"name": "timestamp", "type": "float"},
-    {"name": "payload", "type": {
-        "type": "record",
-        "name": "payload",
-        "fields": [
-          {"name": "temperature", "type": "float"},
-          {"name": "humidity", "type": "float"},
-          {"name": "pressure", "type": "float"},
-          {"name": "luminosity", "type": "float"}
-        ]
-      }
-    }
+    {"name": "timestamp", "type": "int"},
+    {"name": "temperature", "type": "float"},
+    {"name": "humidity", "type": "float"},
+    {"name": "pressure", "type": "float"},
+    {"name": "luminosity", "type": "float"}
   ]
 }
 """
@@ -52,13 +45,11 @@ def create_metric():
     return {
         "id": sensor_id,
         "timestamp": timestamp,
-        "payload": {
-            "temperature": temperature,
-            "humidity": humidity,
-            "pressure": pressure,
-            "luminosity": luminosity,
-            "timestamp": timestamp,
-        },
+        "temperature": temperature,
+        "humidity": humidity,
+        "pressure": pressure,
+        "luminosity": luminosity,
+        "timestamp": timestamp,
     }
 
 
